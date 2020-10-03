@@ -13,8 +13,9 @@ public:
     explicit myHashTable(int size = 101)
     {
         currentSize = 0;
-        myDlList<HashedObj> temp;
-        theLists.resize(101, temp);
+        theLists.resize(101);
+        // myDlList<HashedObj> temp;
+        // theLists.resize(101, temp);
     }
     bool contains(const HashedObj &x)
     {
@@ -34,17 +35,17 @@ public:
         if (find(getiteratorbegin(myhash(x)), getiteratorend(myhash(x)), x) != getiteratorend(myhash(x)))
             return false;
         whichList.push_back(x);
-        
-            // Rehash; see Section 5.5
-            if (++currentSize > theLists.size())
-            {
-                rehash();
-                // std::cout << "rehash " << std::endl;
-            }
-        
-        // auto &whichList2 = theLists[myhash(x)];
-        // std::cout << "insert1_2, x = " << whichList2.back() << std::endl;
-        
+
+        // Rehash; see Section 5.5
+        if (++currentSize > theLists.size())
+        {
+            rehash();
+            // std::cout << "rehash " << std::endl;
+        }
+
+        auto &whichList2 = theLists[myhash(x)];
+        std::cout << "insert1_2, x = " << whichList2.back() << std::endl;
+
         return true;
     }
     bool insert(HashedObj &&x)
@@ -78,7 +79,7 @@ public:
 
     typename myDlList<HashedObj>::iterator find(typename myDlList<HashedObj>::iterator from, typename myDlList<HashedObj>::iterator to, const HashedObj &x)
     {
-        for (auto& it = from; it != to; it++)
+        for (auto &it = from; it != to; it++)
         {
             if (it == x)
                 return it;
@@ -90,7 +91,7 @@ public:
     }
     typename myDlList<HashedObj>::iterator getiteratorend(int index)
     {
-        return theLists[index].begin();
+        return theLists[index].end();
     }
 
 private:
@@ -158,13 +159,14 @@ private:
     class hash
     {
     public:
-        // size_t operator()(const HashedObj &key)
-        // {
-        //     size_t hashVal = 0;
-        //     for (char ch : key)
-        //         hashVal = 37 * hashVal + ch;
-        //     return hashVal;
-        // }
+        size_t operator()(const std::string &key)
+        {
+            size_t hashVal = 0;
+            for (char ch : key)
+                hashVal = 37 * hashVal + ch;
+            return hashVal;
+        }
+
         size_t operator()(const int &key)
         {
             size_t hashVal = abs(key);
