@@ -38,8 +38,6 @@ public:
             rehash();
         }
 
-        auto &whichList2 = theLists[myhash(x)];
-
         return true;
     }
     bool insert(HashedObj &&x)
