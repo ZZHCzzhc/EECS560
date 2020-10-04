@@ -14,8 +14,6 @@ public:
     {
         currentSize = 0;
         theLists.resize(101);
-        // myDlList<HashedObj> temp;
-        // theLists.resize(101, temp);
     }
     bool contains(const HashedObj &x)
     {
@@ -29,34 +27,28 @@ public:
     }
     bool insert(const HashedObj &x)
     {
-        // std::cout << "insert1, x = " << x << std::endl;
 
         auto &whichList = theLists[myhash(x)];
         if (find(getiteratorbegin(myhash(x)), getiteratorend(myhash(x)), x) != getiteratorend(myhash(x)))
             return false;
         whichList.push_back(x);
 
-        // Rehash; see Section 5.5
         if (++currentSize > theLists.size())
         {
             rehash();
-            // std::cout << "rehash " << std::endl;
         }
 
         auto &whichList2 = theLists[myhash(x)];
-        std::cout << "insert1_2, x = " << whichList2.back() << std::endl;
 
         return true;
     }
     bool insert(HashedObj &&x)
     {
-        std::cout << "insert2, x = " << x << std::endl;
         auto y = std::move(x);
         auto &whichList = theLists[myhash(x)];
         if (find(getiteratorbegin(myhash(x)), getiteratorend(myhash(x)), x) != getiteratorend(myhash(x)))
             return false;
         whichList.push_back(y);
-        // Rehash; see Section 5.5
         if (++currentSize > theLists.size())
             rehash();
         return true;
