@@ -40,12 +40,10 @@ public:
 
     ~myStack()
     {
-        std::cout << "s1\n";
 
         if (m_top != nullptr)
             delete[] m_top;
         m_top = nullptr;
-        std::cout << "s2\n";
     }
 
     myStack(myStack &&rhs) : theSize{rhs.theSize}, capacity{rhs.capacity}, m_top{rhs.m_top}

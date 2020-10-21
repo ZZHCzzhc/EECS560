@@ -42,7 +42,7 @@ public:
         {
             return current == rhs.current;
         }
-        bool operator==(const T &rhs) const//addddddd
+        bool operator==(const T &rhs) const //addddddd
         {
             return retrieve() == rhs;
         }
@@ -291,7 +291,7 @@ public:
     // {
     //     for(auto it = from; it != to; it++)
     //     {
-            
+
     //         if(it.data == x)
     //             return it;
     //     }

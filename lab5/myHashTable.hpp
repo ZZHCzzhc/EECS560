@@ -38,6 +38,8 @@ public:
             rehash();
         }
 
+        auto &whichList2 = theLists[myhash(x)];
+
         return true;
     }
     bool insert(HashedObj &&x)
@@ -74,6 +76,7 @@ public:
             if (it == x)
                 return it;
         }
+        return to;
     }
     typename myDlList<HashedObj>::iterator getiteratorbegin(int index)
     {

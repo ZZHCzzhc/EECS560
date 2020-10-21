@@ -192,7 +192,6 @@ int main(int argc, char *argv[])
             {
                   outfile_queue << 1 << "\n";
             }
-            cout << "end\n";
       }
       else
       {

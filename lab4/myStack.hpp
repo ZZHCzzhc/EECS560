@@ -27,7 +27,7 @@ private:
             for(int i = 0; i < theSize; i++)
                 temp[i] = m_top[i];
 
-            swap(m_top, temp);
+            std::swap(m_top, temp);
             delete[] temp;
         }
     }
@@ -40,12 +40,9 @@ public:
 
     ~myStack()
     {
-        std::cout << "s1\n";
-
         if (m_top != nullptr)
             delete[] m_top;
         m_top = nullptr;
-        std::cout << "s2\n";
     }
 
     myStack(myStack &&rhs) : theSize{rhs.theSize}, capacity{rhs.capacity}, m_top{rhs.m_top}
@@ -85,6 +82,12 @@ public:
         resize();
     }
 
+    void push(char &x)
+    {
+        m_top[theSize] = x;
+        theSize++;
+        resize();
+    }
     T pop()
     {
         if(empty())

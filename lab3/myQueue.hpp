@@ -50,11 +50,9 @@ public:
     }
     ~myQueue()
     {
-        std::cout << "q1\n";
         if (m_front != nullptr)
             delete[]  m_front;
         m_front = nullptr;
-        std::cout << "q2\n";
     }
     myQueue(myQueue &&rhs): theSize{rhs.theSize}, capacity{rhs.capacity},  m_front{rhs.m_front}, frnt{rhs.frnt}, back{rhs.back}
     {
