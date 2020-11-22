@@ -1,6 +1,7 @@
 #include "myGraph.hpp"
 #include <iostream>
 #include <vector>
+#include <fstream>
 #include <string>
 
 int main(int argc, char *argv[])
@@ -11,24 +12,20 @@ int main(int argc, char *argv[])
             return 0;
       }
 
-      // Declear a traverse graph object
-
       myGraph *g = new myGraph(argv[1]);
-
-      // print out the adjacency list
-
-      g->print();
+      g->print2();
       std::cout << "\n";
-
-      // start search from some vertices
-      for (int i = 0; i < 1000; i += 23)
-      {
-            g->BFS(i);
-            std::cout << "\n";
-            g->DFS(i);
-            std::cout << "\n";
-      }
-
+      // for (int s = 0; s < 500; s++)
+      // {
+      //       g->dijkstra(s);
+      //       std::cout << "\n";
+      //       for (int i = 0; i < 500; i++)
+      //       {
+      //             g->printPath(i);
+      //             std::cout << "\n"
+      //                       << g->computePathCost(i) << "\n";
+      //       }
+      // }
       delete g;
       return 0;
 }

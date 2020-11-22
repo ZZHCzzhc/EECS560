@@ -1,0 +1,34 @@
+        std::vector<bool> vis(s.size(), false);
+        inner_Dijkstra(source, vis);
+        // std::vector<bool> vis(s.size(), false);
+
+    /*
+       param
+       vis：    标记顶点是否被访问
+       d：      存储起点s到其他顶点的最短距离
+       */
+        fill(d.begin(), d.end(), INF);
+        d[source] = 0; //起点s到达自身的的距离为0
+        for (int i = 0; i < s.size(); ++i)
+        {
+            int u = -1;                 //找到d[u]中最小的u
+            int MIN = INF;              //找到最小的d[u]
+            for (int j = 0; j < s.size(); ++j) //寻找最小的d[u]
+            {
+                if (vis[j] == false && d[j] < MIN)
+                {
+                    u = j;
+                    MIN = d[j];
+                }
+            }
+            //找不到小于INF的d[u]，说明剩下的顶点和起点s不连通
+            if (u == -1)
+                return;
+            vis[u] = true; //标记u被访问
+            for (int j = 0; j < s[u].size(); ++j)
+            {
+                int v = s[u][j].to; //通过邻接表获取u能直接到达的v
+                if (vis[v] == false && d[v] > d[u] + s[u][j].distance)
+                    d[v] = d[u] + s[u][j].distance; //优化d[u]
+            }
+        }
