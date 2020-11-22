@@ -33,8 +33,7 @@ const Comparable &median3(std::vector<Comparable> &a, int left, int right, bool 
 template <typename Comparable>
 void insertionSort(std::vector<Comparable> &a, int left, int right, bool reverse)
 {
-  int i;
-  int j;
+  int i, j;
   for (i = left + 1; i <= right; i++)
   {
     j = i;
@@ -80,7 +79,6 @@ void quickSort(std::vector<Comparable> &a, int left, int right, bool reverse)
       else
         break;
     }
-
     std::swap(a[i], a[right - 1]); // Restore pivot
 
     quickSort(a, left, i - 1, reverse);  // Sort small elements
@@ -94,5 +92,4 @@ template <typename Comparable>
 void quickSort(std::vector<Comparable> &a, bool reverse = false) //interface
 {
   quickSort(a, 0, a.size() - 1, reverse);
-  // insertionSort(a,0,a.size()-1,reverse);
 }
